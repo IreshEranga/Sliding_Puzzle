@@ -42,8 +42,7 @@ class PuzzleState {
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof PuzzleState) {
-            PuzzleState other = (PuzzleState) o;
+        if (o instanceof PuzzleState other) {
             return Arrays.deepEquals(this.board, other.board);
         }
         return false;
@@ -55,6 +54,7 @@ class PuzzleState {
     }
 }
 
+@SuppressWarnings("ALL")
 public class SlidingPuzzle {
     private static final int[] DX = {1, -1, 0, 0};
     private static final int[] DY = {0, 0, 1, -1};
@@ -116,9 +116,7 @@ public class SlidingPuzzle {
     private static int[][] deepCopy(int[][] board) {
         int[][] copy = new int[board.length][board[0].length];
         for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) {
-                copy[i][j] = board[i][j];
-            }
+            System.arraycopy(board[i], 0, copy[i], 0, board[0].length);
         }
         return copy;
     }
